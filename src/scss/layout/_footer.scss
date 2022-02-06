@@ -1,0 +1,22 @@
+.footer {
+    background: $color-primary;
+    padding-block-start: 6.25rem;
+    padding-block-end: 4.25rem;
+    text-align: center;
+
+    @include respond(min-tab-port) {
+        position: relative;
+        margin-block-start: -21rem;
+        padding-block-start: 3.75rem;
+        padding-block-end: 2rem;
+    }
+
+    &-logo {
+        width: 9.563rem;
+        height: auto;
+
+        @include respond(min-tab-port) {
+            width: 15.23rem;
+        }
+    }
+}

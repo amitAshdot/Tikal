@@ -1,0 +1,240 @@
+@mixin clearFix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin absltCenter {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin inputBasic {
+  font-family: 'adoveFnt22', sans-serif;
+  height: 9rem;
+  border: none;
+  border-radius: 10rem;
+  margin: 1.5rem 0;
+  padding: 0 2.5rem;
+  font-size: 3.5rem;
+
+  @include respond(phone) {
+    height: 7rem;
+    margin-block-end: 1rem;
+    font-size: 3rem;
+  }
+
+  @include respond(phone-small) {
+    margin: 0.8rem;
+  }
+}
+
+@mixin submitBasic($color) {
+  font-family: 'adoveFnt22-bold', sans-serif;
+  position: relative;
+  height: 10rem;
+  border: none;
+  border-radius: 10rem;
+  margin: 2rem 0;
+  padding: 0 2rem;
+  font-size: 5rem;
+  color: $color-white;
+  background-color: $color;
+  width: 50%;
+  align-self: center;
+  margin-block-start: 9rem;
+
+  transition: all 0.5s;
+
+  @include respond(phone) {
+    font-size: 3rem;
+    width: 50%;
+    height: 7rem;
+    margin-block-start: 5rem;
+  }
+}
+
+@mixin buttonHover {
+  transform: translate(0.6rem, -0.8rem);
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+
+@mixin shine($color) {
+  &:focus {
+    outline: 0;
+  }
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5);
+    width: 60px;
+    height: 100%;
+    inset-inline-start: 0;
+    inset-block-start: 0;
+    opacity: 0.5;
+    filter: blur(30px);
+    transform: translateX(-100px) skewX(-15deg);
+    transition: 0.5s;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    width: 30px;
+    height: 100%;
+    inset-inline-start: 30px;
+    inset-block-start: 0;
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-100px) skewX(-15deg);
+    transition: 0.5s;
+  }
+
+  &:hover,
+  &:focus {
+    background: $color;
+    cursor: pointer;
+
+    &:before {
+      transform: translateX(350px) skewX(-15deg);
+      opacity: 0.6;
+    }
+
+    &:after {
+      transform: translateX(350px) skewX(-15deg);
+      opacity: 1;
+    }
+  }
+}
+
+@mixin global-btn ($color, $bg, $borderColor) {
+  border: 2px solid $borderColor;
+  color: $color;
+  background-color: $bg;
+  padding: 0.6rem 1rem;
+  text-align: center;
+  font-size: 1.125rem;
+  font-family: "adoveFnt22", sans-serif;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  z-index: 1;
+  transition: color 0.2s ease;
+  text-decoration: none;
+
+  &::after {
+    position: absolute;
+    content: "";
+    width: calc(100% + 4px);
+    height: 0;
+    inset-block-start: -2px;
+    inset-inline-end: -2px;
+    z-index: -1;
+    background-color: $color;
+    transition: height 0.2s ease;
+  }
+
+  &:hover,
+  &:focus {
+    color: $bg;
+    border: 2px solid $borderColor;
+
+    &::after {
+      height: calc(100% + 4px);
+    }
+  }
+}
+
+@mixin beforeCheckedBtn {
+  &::before {
+    position: relative;
+    display: inline-block;
+    content: '';
+    width: 0.7rem;
+    height: 0.55rem;
+    z-index: -1;
+    background-image: url(../assets/images/job-section/check@2x.webp);
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-inline-end: 0.3rem;
+    transition: all 0.2s ease;
+
+    @include respond(mini-desktop) {
+      width: 1.6rem;
+      height: 1.1rem;
+    }
+  }
+}
+
+// --------- BUILT BY Amit Ashdot ---------
+//Media query manager
+/*
+0-350px: small phone
+350-600px : phone
+600-900px: tablet portarit
+900-1070px: mini desktop
+1070-1200px: tablet landscape
+1200-1520px: small-desktop
+[1200-1800px]: main style 
+1800px + : big desktop
+
+$breakpoint argument choices
+-phone-small
+-phone
+-tab-port
+-mini-desktop
+-tab-land
+-small-desktop
+-big-desktop
+
+1em =16px
+*/
+@mixin respond($breakpoint) {
+  // @if $breakpoint==phone-small {
+  //   @media only screen and (max-width: 26em) {
+  //     // 350px - iphone 5 (415px)
+  //     @content;
+  //   }
+  // }
+
+  @if $breakpoint==min-tab-port {
+    @media only screen and (min-width: 47.5em) {
+      // 900px
+      @content;
+    }
+  }
+
+  @if $breakpoint==min-biggest {
+    @media only screen and (min-width: 90em) {
+      // 1440px
+      @content;
+    }
+  }
+}
+
+//- Mixin: Fluid Type
+///
+/// Magic calc + vh to allow text to be fluid between minimum
+/// and maximum breakpoints.
+///
+/// @group typography
+/// @param {variable} $min-font-size [12px] - Minimum font size 
+/// @param {variable} $max-font-size [24px] - Maximum font size
+/// @param {variable} $lower-range [420px] - Stop scaling font smaller at this screen resolution 
+/// @param {variable} $upper-range [900px] - Stop scaling font larger at this screen resolution 
+/// @example
+///   h1 {
+///     @include responsive-type(20px, 48px);
+///   }
+/// @site https://madebymike.com.au/writing/precise-control-responsive-typography/

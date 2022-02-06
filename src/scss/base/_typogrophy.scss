@@ -1,0 +1,105 @@
+// @font-face {
+//   font-family: 'adoveFnt22';
+//   src: url(https://amitashdot.github.io/targetCall-landing/fonts/ploni-regular-aaa.otf);
+//   font-display: swap;
+
+// }
+
+// @font-face {
+//   font-family: 'adoveFnt22-bold';
+//   src: url(https://amitashdot.github.io/targetCall-landing/fonts/ploni-bold-aaa.otf);
+//   font-display: swap;
+
+// }
+
+// Request URL: https: //targetcall-career.co.il/welcome/moked/wp-content/themes/welcome_theme/assets/fonts/ploni-regular-aaa.otf
+// Request URL: https: //targetcall-career.co.il/welcome/moked/wp-content/themes/welcome_theme/fonts/ploni-bold-aaa.otf
+
+
+@font-face {
+  font-family: 'adoveFnt22';
+  src: url(./assets/fonts/ploni-regular-aaa.otf);
+  font-display: swap;
+
+}
+
+@font-face {
+  font-family: 'adoveFnt22-bold';
+  src: url(./assets/fonts/ploni-bold-aaa.otf);
+  font-display: swap;
+
+}
+
+// @font-face {
+//   font-family: 'adoveFnt22-ultrabold';
+//   src: url(https://amitashdot.github.io/targetCall-landing/fonts/ploni-ultrabold-aaa.otf);
+//   font-display: swap;
+
+// }
+
+body {
+  font-family: 'adoveFnt22', sans-serif;
+  font-weight: 400;
+  font-size: $defaut-font-size;
+  line-height: 1.7;
+}
+
+// h1,
+// h2,
+// h3,
+// h4 {
+//   font-weight: 700;
+// }
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2rem;
+  line-height: 2rem;
+}
+
+h3 {
+  // font-size: 2.31rem;
+  // line-height: 2.35rem;
+  font-size: 2.91rem;
+  line-height: 3rem;
+  letter-spacing: 0.03rem;
+
+  @include respond(mini-desktop) {
+    font-size: 4.1rem;
+    line-height: initial;
+    letter-spacing: 0.03rem;
+  }
+}
+
+p strong {
+  font-family: "adoveFnt22", sans-serif;
+}
+
+p {
+  font-size: 1.15rem;
+
+  a {
+    color: $color-grey-dark;
+    text-decoration-color: $color-black;
+    text-decoration-thickness: 3px;
+  }
+}
+
+.blue-text {
+  color: $color-primary;
+}
+
+.orange-text {
+  color: $color-secondary;
+}
+
+
+
+
+// Request URL: https: //targetcall-career.co.il/wp-content/themes/welcome_theme/assets/fonts/ploni-regular-aaa.otf
+// Request URL: https: //targetcall-career.co.il/wp-content/themes/welcome_theme/assets/fonts/ploni-regular-aaa.otf
+// Request URL: https: //targetcall-career.co.il/welcome/moked/wp-content/themes/welcome_theme/assets/fonts/ploni-bold-aaa.otf
+// moked/wp-content/themes/welcome_theme/assets/fonts/ploni-regular-aaa.otf

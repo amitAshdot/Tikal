@@ -1,0 +1,70 @@
+.u-center-text {
+  text-align: center !important;
+}
+
+.u-margin-botton-small {
+  margin-block-end: 2rem !important;
+}
+
+.u-margin-botton-medium {
+  margin-bottom: 4rem !important;
+
+  @include respond(tab-port) {
+    margin-block-end: 1.5rem !important;
+  }
+}
+
+.u-margin-botton-big {
+  margin-block-end: 8rem !important;
+
+  @include respond(tab-port) {
+    margin-block-end: 5rem !important;
+  }
+}
+
+.u-margin-top-medium {
+  margin-block-end: 6rem !important;
+
+  @include respond(tab-port) {
+    margin-block-end: 3rem !important;
+  }
+}
+
+.u-margin-top-big {
+  margin-block-end: 8rem !important;
+
+  @include respond(tab-port) {
+    margin-bottom: 4rem !important;
+  }
+}
+
+.u-margin-top-huge {
+  margin-bottom: 8rem !important;
+
+  @include respond(tab-port) {
+    margin-bottom: 4rem !important;
+  }
+}
+
+
+.u-hidden {
+  display: none !important;
+
+}
+
+.u-desktop {
+  display: block;
+
+  @include respond(mini-desktop) {
+    display: none;
+
+  }
+}
+
+.u-mobile {
+  display: none;
+
+  @include respond(mini-desktop) {
+    display: block;
+  }
+}

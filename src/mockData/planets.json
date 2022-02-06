@@ -1,0 +1,215 @@
+[
+    {
+        "name": "Tatooine",
+        "rotation_period": "23",
+        "orbital_period": "304",
+        "diameter": "10465",
+        "climate": "arid",
+        "gravity": "1 standard",
+        "terrain": "desert",
+        "surface_water": "1",
+        "population": "200000",
+        "residents": [
+            "https://swapi.py4e.com/api/people/1/",
+            "https://swapi.py4e.com/api/people/2/",
+            "https://swapi.py4e.com/api/people/4/",
+            "https://swapi.py4e.com/api/people/6/",
+            "https://swapi.py4e.com/api/people/7/",
+            "https://swapi.py4e.com/api/people/8/",
+            "https://swapi.py4e.com/api/people/9/",
+            "https://swapi.py4e.com/api/people/11/",
+            "https://swapi.py4e.com/api/people/43/",
+            "https://swapi.py4e.com/api/people/62/"
+        ],
+        "films": [
+            "https://swapi.py4e.com/api/films/1/",
+            "https://swapi.py4e.com/api/films/3/",
+            "https://swapi.py4e.com/api/films/4/",
+            "https://swapi.py4e.com/api/films/5/",
+            "https://swapi.py4e.com/api/films/6/"
+        ],
+        "created": "2014-12-09T13:50:49.641000Z",
+        "edited": "2014-12-20T20:58:18.411000Z",
+        "url": "https://swapi.py4e.com/api/planets/1/"
+    },
+    {
+        "name": "Alderaan",
+        "rotation_period": "24",
+        "orbital_period": "364",
+        "diameter": "12500",
+        "climate": "temperate",
+        "gravity": "1 standard",
+        "terrain": "grasslands, mountains",
+        "surface_water": "40",
+        "population": "2000000000",
+        "residents": [
+            "https://swapi.py4e.com/api/people/5/",
+            "https://swapi.py4e.com/api/people/68/",
+            "https://swapi.py4e.com/api/people/81/"
+        ],
+        "films": [
+            "https://swapi.py4e.com/api/films/1/",
+            "https://swapi.py4e.com/api/films/6/"
+        ],
+        "created": "2014-12-10T11:35:48.479000Z",
+        "edited": "2014-12-20T20:58:18.420000Z",
+        "url": "https://swapi.py4e.com/api/planets/2/"
+    },
+    {
+        "name": "Stewjon",
+        "rotation_period": "unknown",
+        "orbital_period": "unknown",
+        "diameter": "0",
+        "climate": "temperate",
+        "gravity": "1 standard",
+        "terrain": "grass",
+        "surface_water": "unknown",
+        "population": "unknown",
+        "residents": [
+            "https://swapi.py4e.com/api/people/10/"
+        ],
+        "films": [],
+        "created": "2014-12-10T16:16:26.566000Z",
+        "edited": "2014-12-20T20:58:18.452000Z",
+        "url": "https://swapi.py4e.com/api/planets/20/"
+    },
+    {
+        "name": "Kashyyyk",
+        "rotation_period": "26",
+        "orbital_period": "381",
+        "diameter": "12765",
+        "climate": "tropical",
+        "gravity": "1 standard",
+        "terrain": "jungle, forests, lakes, rivers",
+        "surface_water": "60",
+        "population": "45000000",
+        "residents": [
+            "https://swapi.py4e.com/api/people/13/",
+            "https://swapi.py4e.com/api/people/80/"
+        ],
+        "films": [
+            "https://swapi.py4e.com/api/films/6/"
+        ],
+        "created": "2014-12-10T13:32:00.124000Z",
+        "edited": "2014-12-20T20:58:18.442000Z",
+        "url": "https://swapi.py4e.com/api/planets/14/"
+    },
+    {
+        "name": "Corellia",
+        "rotation_period": "25",
+        "orbital_period": "329",
+        "diameter": "11000",
+        "climate": "temperate",
+        "gravity": "1 standard",
+        "terrain": "plains, urban, hills, forests",
+        "surface_water": "70",
+        "population": "3000000000",
+        "residents": [
+            "https://swapi.py4e.com/api/people/14/",
+            "https://swapi.py4e.com/api/people/18/"
+        ],
+        "films": [],
+        "created": "2014-12-10T16:49:12.453000Z",
+        "edited": "2014-12-20T20:58:18.456000Z",
+        "url": "https://swapi.py4e.com/api/planets/22/"
+    },
+    {
+        "name": "unknown",
+        "rotation_period": "0",
+        "orbital_period": "0",
+        "diameter": "0",
+        "climate": "unknown",
+        "gravity": "unknown",
+        "terrain": "unknown",
+        "surface_water": "unknown",
+        "population": "unknown",
+        "residents": [
+            "https://swapi.py4e.com/api/people/20/",
+            "https://swapi.py4e.com/api/people/23/",
+            "https://swapi.py4e.com/api/people/29/",
+            "https://swapi.py4e.com/api/people/32/",
+            "https://swapi.py4e.com/api/people/75/",
+            "https://swapi.py4e.com/api/people/84/",
+            "https://swapi.py4e.com/api/people/85/",
+            "https://swapi.py4e.com/api/people/86/",
+            "https://swapi.py4e.com/api/people/87/",
+            "https://swapi.py4e.com/api/people/88/"
+        ],
+        "films": [],
+        "created": "2014-12-15T12:25:59.569000Z",
+        "edited": "2014-12-20T20:58:18.466000Z",
+        "url": "https://swapi.py4e.com/api/planets/28/"
+    },
+    {
+        "name": "Dathomir",
+        "rotation_period": "24",
+        "orbital_period": "491",
+        "diameter": "10480",
+        "climate": "temperate",
+        "gravity": "0.9",
+        "terrain": "forests, deserts, savannas",
+        "surface_water": "unknown",
+        "population": "5200",
+        "residents": [
+            "https://swapi.py4e.com/api/people/44/"
+        ],
+        "films": [],
+        "created": "2014-12-19T18:00:40.142000Z",
+        "edited": "2014-12-20T20:58:18.480000Z",
+        "url": "https://swapi.py4e.com/api/planets/36/"
+    },
+    {
+        "name": "Serenno",
+        "rotation_period": "unknown",
+        "orbital_period": "unknown",
+        "diameter": "unknown",
+        "climate": "unknown",
+        "gravity": "unknown",
+        "terrain": "rainforests, rivers, mountains",
+        "surface_water": "unknown",
+        "population": "unknown",
+        "residents": [
+            "https://swapi.py4e.com/api/people/67/"
+        ],
+        "films": [],
+        "created": "2014-12-20T16:52:13.357000Z",
+        "edited": "2014-12-20T20:58:18.510000Z",
+        "url": "https://swapi.py4e.com/api/planets/52/"
+    },
+    {
+        "name": "Zolan",
+        "rotation_period": "unknown",
+        "orbital_period": "unknown",
+        "diameter": "unknown",
+        "climate": "unknown",
+        "gravity": "unknown",
+        "terrain": "unknown",
+        "surface_water": "unknown",
+        "population": "unknown",
+        "residents": [
+            "https://swapi.py4e.com/api/people/70/"
+        ],
+        "films": [],
+        "created": "2014-12-20T16:56:37.250000Z",
+        "edited": "2014-12-20T20:58:18.514000Z",
+        "url": "https://swapi.py4e.com/api/planets/54/"
+    },
+    {
+        "name": "Kalee",
+        "rotation_period": "23",
+        "orbital_period": "378",
+        "diameter": "13850",
+        "climate": "arid, temperate, tropical",
+        "gravity": "1",
+        "terrain": "rainforests, cliffs, canyons, seas",
+        "surface_water": "unknown",
+        "population": "4000000000",
+        "residents": [
+            "https://swapi.py4e.com/api/people/79/"
+        ],
+        "films": [],
+        "created": "2014-12-20T19:43:51.278000Z",
+        "edited": "2014-12-20T20:58:18.523000Z",
+        "url": "https://swapi.py4e.com/api/planets/59/"
+    }
+]

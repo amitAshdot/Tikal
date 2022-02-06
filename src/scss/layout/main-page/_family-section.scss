@@ -1,0 +1,175 @@
+.family {
+    &-section {
+        position: relative;
+        // padding-inline-start: 1.5rem;
+        // padding-inline-end: 1.5rem;
+        padding-block-start: 3rem;
+
+        @include respond(min-tab-port) {
+            position: relative;
+            top: -21rem;
+        }
+
+        .float {
+            &.circle {
+                position: absolute;
+                width: 8.09rem;
+                height: 8.09rem;
+                background: $color-primary;
+                border-radius: 50%;
+                inset-block-end: 2rem;
+                inset-inline-end: -2rem;
+                z-index: 0;
+
+                @include respond(min-tab-port) {
+                    inset-block-end: 3rem;
+                    inset-inline-end: 88%;
+                    z-index: 0;
+                }
+            }
+        }
+    }
+
+    &-smiley {
+        position: absolute;
+        inset-block-start: 0;
+        inset-inline-start: -50%;
+        transform: translateX(-50%);
+        width: 10.719rem;
+        height: 5rem;
+
+        @include respond(min-tab-port) {
+            inset-block-start: 53%;
+            inset-inline-start: 65%;
+            width: 10.719rem;
+            height: 5rem;
+            transform: translateX(-70%);
+            z-index: 5;
+        }
+
+        & {
+            opacity: 0;
+            transform: translateY(50%) translateX(-50%);
+            transition: all 0.5s;
+            will-change: transform opacity;
+
+            @include respond(min-tab-port) {
+                transform: translateY(50%) translateX(-70%);
+
+            }
+        }
+
+        &.is-visible {
+            overflow: hidden;
+            opacity: 1;
+            transform: translateY(0%) translateX(-50%);
+
+            @include respond(min-tab-port) {
+                transform: translateY(0%) translateX(-70%);
+
+            }
+        }
+    }
+
+    &-icon {
+        width: 1.6875rem;
+        height: auto;
+        object-fit: contain;
+        aspect-ratio: 27 / 32;
+
+        &-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            background: $color-primary-part-transparent;
+            position: absolute;
+            inset-block-start: 3%;
+            inset-inline-end: 50%;
+            transform: translate(-50%, -20%);
+            box-shadow: 2px 2px 16px rgba($color-black, 0.25);
+        }
+    }
+
+    &-container {
+        background: $color-primary-part-transparent;
+        text-align: center;
+        padding-inline-start: 1.5rem;
+        padding-inline-end: 1.5rem;
+        padding-block-start: 4.56rem;
+        padding-block-end: 4.063rem;
+
+    }
+
+    &-card {
+        position: relative;
+        width: 19.5rem;
+        height: auto;
+        border-radius: 32px;
+        background: $color-white;
+        padding-inline-start: 1.9rem;
+        padding-inline-end: 1.9rem;
+        padding-block-start: 2.5rem;
+        padding-block-end: 2.75rem;
+        margin-inline-end: auto;
+        margin-inline-start: auto;
+        z-index: 2;
+
+        @include respond(min-tab-port) {
+            width: 48.5rem;
+            padding-block-start: 0;
+            padding-inline-start: 10rem;
+            padding-inline-end: 10rem;
+        }
+
+        & {
+            opacity: 0;
+            transform: translateY(50%);
+            transition: all 0.5s;
+            will-change: transform opacity;
+        }
+
+        &.is-visible {
+            overflow: hidden;
+            opacity: 1;
+            transform: translateY(0%);
+        }
+
+        &-img {
+            width: calc(100% + 4rem);
+            height: auto;
+            transform: translateX(2rem);
+
+            @include respond(min-tab-port) {
+                width: 24.1rem;
+                transform: translateX(0);
+            }
+        }
+
+        &>h3 {
+            padding-block-start: 3rem;
+            font-size: 1.953rem;
+            line-height: 1.953rem;
+
+            @include respond(min-tab-port) {
+                padding-block-start: 4rem;
+                font-size: 3rem;
+                line-height: 3rem;
+            }
+        }
+
+        &>p {
+            font-size: 1rem;
+            line-height: 1.875rem;
+            text-align: center;
+
+            @include respond(min-tab-port) {
+                width: 24.1rem;
+                margin: auto;
+                padding-block-start: 2rem;
+            }
+        }
+    }
+}
