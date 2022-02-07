@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import Testa from './components/Testa';
+import TaskOne from './components/TaskOne';
+import TaskTwo from './components/TaskTwo';
 //Layout component
 // import Navbar from "./components/layouts/Navbar";
 
@@ -15,7 +16,8 @@ const App = () => {
           header
         </header>
         balh
-        <Testa />
+        {/* <TaskOne /> */}
+        <TaskTwo />
       </div>
     </VehicleState>
   );

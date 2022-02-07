@@ -7,13 +7,17 @@ import mockVehicleResults from '../../mockData/vehicles.json'
 import mockPeopleResults from '../../mockData/people.json'
 // import mockPeopleResults from '../../mockData/people.json'
 import mockPlanetsResults from '../../mockData/planets.json'
+import taskTwoPlanets from '../../mockData/taskTwoPlanets.json'
 
 import {
     SET_PILOTS,
     SET_PLANETS,
     SET_SUM_MAP,
+    SET_HIGHEST_POPULATION_VEHICLE,
+    SET_PLANETS_LIST,
     FETCH_START,
     FETCH_FAILED,
+    FETCH_SUCCESS,
     FETCH_PILOTS_SUCCESS,
     FETCH_VEHICLES_SUCCESS,
     FETCH_PLANETS_SUCCESS,
@@ -24,20 +28,14 @@ const VehicleState = props => {
         isLoading: false,
         error: null,
         //task 1
-        // peopleList: [],
-        // pilotsList: [],
-        // vehicleList: [],
-        // planetsList: [],
-        peopleList: mockPeopleResults,
-        pilotsList: [],
-        vehicleList: mockVehicleResults,
-        planetsList: mockPlanetsResults,
         pilotsMap: null,
         planetsMap: null,
-        sumMap: null,
+        highestPopulationVehicle: null,
 
         //task2
-        planetsNames: ['Tatooine', 'Alderaan', 'Naboo', 'Bespin', 'Endor']
+        planetsNames: ['Tatooine', 'Alderaan', 'Naboo', 'Bespin', 'Endor'],
+        planetsList: taskTwoPlanets,
+        // planetsList: []
     };
     const [state, dispatch] = useReducer(vehicleReducer, initialState);
 
@@ -49,6 +47,9 @@ const VehicleState = props => {
     const fetchFailed = (error) => {
         dispatch({ type: FETCH_FAILED, payload: error });
     };
+    const fetchSuccess = (error) => {
+        dispatch({ type: FETCH_SUCCESS });
+    };
 
     ///--- SETTERS ---
     const setPilotsByMap = (PilotMap) => {
@@ -58,8 +59,14 @@ const VehicleState = props => {
     const setPlanetsByMap = (PlanetMap) => {
         dispatch({ type: SET_PLANETS, payload: PlanetMap });
     }
-    const setSumMap = (sumMap) => {
-        dispatch({ type: SET_SUM_MAP, payload: sumMap });
+
+    const setHighestPopulationVehicle = (vehicleObject) => {
+        dispatch({ type: SET_HIGHEST_POPULATION_VEHICLE, payload: vehicleObject });
+    }
+
+
+    const setPlanetsList = (planetList) => {
+        dispatch({ type: SET_PLANETS_LIST, payload: planetList });
     }
 
     ///--- GETTERS ---
@@ -78,54 +85,66 @@ const VehicleState = props => {
     }
 
     const getAllByCategoryAPI = async (category) => {
+        const categories = { "people": "people", 'vehicle': 'vehicle', 'planets': 'planets' }
         let list = [], status = 200, pageNum = 1
         fetchStart()
         try {
             while (status === 200) {
-                const res = await axios.get(`${url}/${category}/?page=${pageNum}`);
+                const res = await axios.get(`${url}/${categories[category]}/?page=${pageNum}`);
                 status = res.status
                 pageNum++
                 list = [...list, ...res.data.results]
             }
             // fetchSuccess(peopleList)
         } catch (err) {
-            debugger
-            if (list.length > 0 && status === 404)
-                console.log(list)
-            // fetchSuccess(vehicleList)
+            if (list.length > 0)
+                // console.log(list)
+                fetchSuccess()
             else
                 fetchFailed(err)
         }
         return list
     }
 
-    const getVehiclesById = async (vehicleMap) => {
-        let keys = vehicleMap.keys();
-        let vehiclesList = [];
-
+    const getVehiclesById = async (id) => {
         fetchStart()
         try {
-            for (let i = 0; i < vehicleMap.size; i++) {
-                let iterator = keys.next()
-                const res = await axios.get(vehicleMap.get(iterator.value));
-                vehiclesList = [...vehiclesList, res.data]
-            }
-            console.log('vehiclesList: ', vehiclesList)
-            dispatch({ type: FETCH_VEHICLES_SUCCESS, payload: vehiclesList });
+            const res = await axios.get(`${url}/vehicles/${id}/`);
+            dispatch({ type: FETCH_VEHICLES_SUCCESS, payload: res.data });
+            return res.data
         } catch (err) {
             fetchFailed(err)
+            return err
         }
-        return vehiclesList
     }
 
-    const getPlanetsById = async (planetsMap) => {
+    // const getVehiclesByMap = async (vehicleMap) => {
+    //     let keys = vehicleMap.keys();
+    //     let vehiclesList = [];
+
+    //     fetchStart()
+    //     try {
+    //         for (let i = 0; i < vehicleMap.size; i++) {
+    //             let iterator = keys.next()
+    //             const res = await axios.get(vehicleMap.get(iterator.value));
+    //             vehiclesList = [...vehiclesList, res.data]
+    //         }
+    //         console.log('vehiclesList: ', vehiclesList)
+    //         dispatch({ type: FETCH_VEHICLES_SUCCESS, payload: vehiclesList });
+    //     } catch (err) {
+    //         fetchFailed(err)
+    //     }
+    //     return vehiclesList
+    // }
+
+    const getPlanetsByMap = async (planetsMap) => {
         let keys = planetsMap.keys();
         let planetsList = [];
 
         fetchStart()
         try {
             for (let i = 0; i < planetsMap.size; i++) {
-                const res = await axios.get(planetsMap.get(keys.next().value));
+                const res = await axios.get(`${planetsMap.get(keys.next().value)}/`);
                 planetsList = [...planetsList, res.data]
             }
             console.log('planetsList: ', planetsList)
@@ -139,7 +158,7 @@ const VehicleState = props => {
     const getPlanetsByName = async (planetName) => {
         fetchStart()
         try {
-            const res = await axios.get(`${url}/planets/??search=${planetName}`);
+            const res = await axios.get(`${url}/planets/?search=${planetName}`);
             dispatch({ type: FETCH_PLANETS_SUCCESS, payload: res.data });
             return res.data
         } catch (err) {
@@ -147,81 +166,94 @@ const VehicleState = props => {
         }
     }
 
-    // const getPlanetsByNames = async (planetsNames) => {
-    //     let keys = planetsMap.keys();
-    //     let planetsList = [];
+    const getPlanetsByNames = async (planetNames) => {
+        fetchStart()
+        try {
+            const searchNames = planetNames.toString().replace(/,/g, "&")
+            const res = await axios.get(`${url}/planets/?name=${searchNames}`);
+            dispatch({ type: FETCH_PLANETS_SUCCESS, payload: res.data.results });
+            console.log('results:', res.data.results)
+            return res.data.results
+        } catch (err) {
+            fetchFailed(err)
+        }
+    }
 
-    //     fetchStart()
-    //     try {
-    //         for (let i = 0; i < planetsMap.size; i++) {
-    //             const res = await axios.get(planetsMap.get(keys.next().value));
-    //             planetsList = [...planetsList, res.data]
-    //         }
-    //         console.log('planetsList: ', planetsList)
-    //         dispatch({ type: FETCH_PLANETS_SUCCESS, payload: planetsList });
-    //     } catch (err) {
-    //         fetchFailed(err)
-    //     }
-    //     return planetsList
-    // }
+    const calculatePopulationToVehicle = async () => {
+        let vehicleMap = new Map()
+        let mostPoplationVehicle = { id: -1, totalHomePopulation: -1 }
 
-    const calculatePopulationToVehicle = () => {
-
-        //CALCULATE SUM OF POPULATION BY VEHICLE -> PILOTS -> +PLANET POPULATION 
-        let sumMap = new Map()
-
-        for (let i = 0; i < state.vehicleList.length; i++) {
-            let tempObject = {
-                id: 0,
-                name: '',
-                pilots: new Map(),
-                pilotsId: [],
-                planets: new Map(),
-                planetsId: [],
-                populationSum: 0,
-                url: ''
-            }
-            tempObject.id = getObjectFromURL(state.vehicleList[i].url).id
-            tempObject.url = state.vehicleList[i].url
-            tempObject.name = state.vehicleList[i].name
-            let pilotsUrl = state.vehicleList[i].pilots
-
-            pilotsUrl.forEach((pilot) => {
-                let pilotUrlAndIdObject = getObjectFromURL(pilot);
-                let pilotObject = getPilotById(pilotUrlAndIdObject.id)
-                let homeworldIdAndUrl = getObjectFromURL(pilotObject.homeworld);
-                let tempPlanet = getPlanetById(getObjectFromURL(pilotObject.homeworld).id)
-
-                if (state.pilotsMap.get(pilotUrlAndIdObject.id)) {
-                    if (!tempObject.pilots.get(pilotUrlAndIdObject.id)) {//if not in pilots hash Map temp object
-                        tempObject.pilotsId = [...tempObject.pilotsId, pilotUrlAndIdObject.id]
-                        tempObject.pilots.set(pilotUrlAndIdObject.id, state.pilotsMap.get(pilotUrlAndIdObject.id))
-                    }
+        for (const [key, value] of state.pilotsMap) {
+            const tempVehiclesArr = value.vehicles
+            const piloteHomePlanetObject = state.planetsMap.get(getObjectFromURL(value.homeworld).id)
+            tempVehiclesArr.forEach(vehicle => {
+                const vehicleId = getObjectFromURL(vehicle).id;
+                const knownPopulation = piloteHomePlanetObject.population === 'unknown' ? false : true
+                if (!vehicleMap.get(vehicleId))
+                    vehicleMap.set(vehicleId, {
+                        id: vehicleId,
+                        url: vehicle,
+                        pilots: [value],
+                        totalHomePopulation: knownPopulation ? parseFloat(piloteHomePlanetObject.population) : 0,
+                        planets: [piloteHomePlanetObject]
+                    })
+                else {
+                    const tempHomePopulation = knownPopulation ? vehicleMap.get(vehicleId).totalHomePopulation + parseFloat(piloteHomePlanetObject.population) : vehicleMap.get(vehicleId).totalHomePopulation
+                    const pilots = [...vehicleMap.get(vehicleId).pilots, value]
+                    const planets = [...vehicleMap.get(vehicleId).planets, piloteHomePlanetObject]
+                    vehicleMap.set(vehicleId, {
+                        id: vehicleId,
+                        url: vehicle,
+                        pilots: pilots,
+                        totalHomePopulation: tempHomePopulation,
+                        planets: planets
+                    })
                 }
-
-                // homeworld
-                if (tempPlanet) {
-                    tempObject.populationSum += tempPlanet.population !== 'unknown' ? parseFloat(tempPlanet.population) : 0
-                    if (!tempObject.planets.get(homeworldIdAndUrl.id)) {//if not in pilots hash Map temp object
-                        tempObject.planetsId = [...tempObject.planetsId, homeworldIdAndUrl.id]
-                        tempObject.planets.set(homeworldIdAndUrl.id, state.planetsMap.get(homeworldIdAndUrl.id))
-                    }
-                }
-                sumMap.set(getObjectFromURL(tempObject.url).id, tempObject)
             })
         }
 
-        setSumMap(sumMap)
-        return sumMap
+        for (const [key, value] of vehicleMap) {
+            if (value.totalHomePopulation > mostPoplationVehicle.totalHomePopulation)
+                mostPoplationVehicle = { id: value.id, totalHomePopulation: value.totalHomePopulation }
+        }
+        let finaleVehicle = await getVehiclesById(mostPoplationVehicle.id)
+        // let finaleVehicle = {
+        //     "name": "Tsmeu-6 personal wheel bike",
+        //     "model": "Tsmeu-6 personal wheel bike",
+        //     "manufacturer": "Z-Gomot Ternbuell Guppat Corporation",
+        //     "cost_in_credits": "15000",
+        //     "length": "3.5",
+        //     "max_atmosphering_speed": "330",
+        //     "crew": "1",
+        //     "passengers": "1",
+        //     "cargo_capacity": "10",
+        //     "consumables": "none",
+        //     "vehicle_class": "wheeled walker",
+        //     "pilots": [
+        //         "https://swapi.py4e.com/api/people/79/"
+        //     ],
+        //     "films": [
+        //         "https://swapi.py4e.com/api/films/6/"
+        //     ],
+        //     "created": "2014-12-20T19:43:54.870000Z",
+        //     "edited": "2014-12-20T21:30:21.745000Z",
+        //     "url": "https://swapi.py4e.com/api/vehicles/60/"
+        // }
+        const vehicleId = getObjectFromURL(finaleVehicle.url).id;
+        finaleVehicle.pilots = vehicleMap.get(vehicleId).pilots
+        finaleVehicle.planets = vehicleMap.get(vehicleId).planets
+        finaleVehicle.totalHomePopulation = vehicleMap.get(vehicleId).totalHomePopulation
+        setHighestPopulationVehicle(finaleVehicle)
+
+        return finaleVehicle
+
     }
 
     const getAndInitData = async () => {
         let planetsMap = new Map()
-        let vehicleMap = new Map()
         let pilotMap = new Map()
-
-        // let peopleList = await getAllByCategoryAPI('people')
-        let peopleList = mockPeopleResults
+        let peopleList = await getAllByCategoryAPI('people')
+        // let peopleList = mockPeopleResults
 
         for (let i = 0; i < peopleList.length; i++) {
 
@@ -230,28 +262,22 @@ const VehicleState = props => {
                 pilotMap.set(copy.id, copy)
 
                 for (let j = 0; j < peopleList[i].vehicles.length; j++) {
-                    let tempVehicleObject = getObjectFromURL(peopleList[i].vehicles[j])
-                    if (!vehicleMap.get(tempVehicleObject.id)) {
-                        vehicleMap.set(tempVehicleObject.id, tempVehicleObject.url);
-                    }
-
                     let tempHomeWorldObject = getObjectFromURL(peopleList[i].homeworld)
                     if (!planetsMap.get(tempHomeWorldObject.id)) {
-                        // const planetCopy = { ...planetsList[i], id: getObjectFromURL(peopleList[i].homeworld).id };
-                        // planetsMap.set(planetCopy.id, planetCopy)
                         planetsMap.set(tempHomeWorldObject.id, tempHomeWorldObject.url);
                     }
                 }
             }
         }
-        // let tempPlanetMap = await getPlanetsById(planetsMap)
-        let tempPlanetMap = state.planetsList
+        let tempPlanetMap = await getPlanetsByMap(planetsMap)
+        // let tempPlanetMap = mockPlanetsResults
+
         tempPlanetMap.forEach(planet => {
             const planetCopy = { ...planet, id: getObjectFromURL(planet.url).id };
             planetsMap.set(planetCopy.id, planetCopy)
         })
 
-        // await getVehiclesById(vehicleMap)
+        // await getVehiclesByMap(vehicleMap)
 
         setPilotsByMap(pilotMap)
         setPlanetsByMap(planetsMap)
@@ -259,19 +285,19 @@ const VehicleState = props => {
     return (
         <vehicleContext.Provider value={{
             isLoading: state.isLoading,
-            peopleList: state.peopleList,
-            pilotsList: state.pilotsList,
-            vehicleList: state.vehicleList,
-            planetsList: state.planetsList,
             error: state.error,
             pilotsMap: state.pilotsMap,
             planetsMap: state.planetsMap,
-            sumMap: state.sumMap,
+            highestPopulationVehicle: state.highestPopulationVehicle,
+            planetsNames: state.planetsNames,
+            planetsList: state.planetsList,
             calculatePopulationToVehicle,
             getAllByCategoryAPI,
             fetchStart,
             fetchFailed,
             getAndInitData,
+            getPlanetsByNames,
+            setPlanetsList,
         }} >
 
             {props.children}

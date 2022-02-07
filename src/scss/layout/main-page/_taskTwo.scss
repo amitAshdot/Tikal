@@ -1,0 +1,43 @@
+.taskTwo {
+    display: flex;
+    flex-direction: column;
+    height: 60vh;
+
+    &-title {
+        // height: 5%;
+    }
+
+    .graph {
+        &-container {
+            display: flex;
+            height: 50rem;
+        }
+
+        &-candle {
+            // height: 100%;
+            background: cadetblue;
+
+            display: flex;
+            flex-direction: column;
+            // justify-content: space-between;
+            justify-content: flex-end;
+
+            &-number {
+                height: 5%;
+                line-height: 1.5rem;
+                font-size: 1.4rem;
+            }
+
+            &-middle {
+                background: antiquewhite;
+            }
+
+            &-text {
+                height: 5%;
+                line-height: 1.5rem;
+                font-size: 1.4rem;
+            }
+        }
+    }
+
+}
