@@ -3,49 +3,29 @@ import VehicleContext from '../context/vehicle/vehicleContext'
 
 const TaskOneTable = () => {
     const vehicleContext = useContext(VehicleContext);
-    const { getVehicles, isLoading, getAndInitData, calculatePopulationToVehicle, sumMap, planetsMap } = vehicleContext;
-
-    const getHighestPopulation = () => {
-        let highest = ['1', { populationSum: 0 }] // [{vehicle id} , {planets poplation}]
-        let iteratorArr = [...Array.from(sumMap)]
-        iteratorArr.forEach(planet =>
-            highest = planet[1].populationSum > highest[1].populationSum ? planet : highest
-        )
-        return sumMap.get(highest[0])
-    }
-    const test = sumMap ? getHighestPopulation() : null
-
-
-    const getDetailsFromMapInObject = (keyName) => {
-        let planetsArr = []
-        for (const [key, value] of test[keyName]) {
-            planetsArr = [...planetsArr, [value.name, value.population]]
-        }
-        return planetsArr
-    }
-    const planets = test ? getDetailsFromMapInObject('planets') : null
-    const pilots = test ? getDetailsFromMapInObject('pilots') : null
-
+    const { highestPopulationVehicle } = vehicleContext;
+    const planetsListToShow = highestPopulationVehicle['planets'].map((planetDetails, key) => { return <p key={key}> {`[${planetDetails.name}, ${planetDetails.population}]`} </p> })
+    const pilotsListToShow = highestPopulationVehicle['pilots'].map((pilotDetails, key) => { return <p key={key}> {pilotDetails.name} </p> })
     return <table>
         <thead>
-
             <tr>
-                <th>Vehicle name with the largest sum {test.name}</th>
+                <th>Vehicle name with the largest sum {highestPopulationVehicle.name}</th>
             </tr>
         </thead>
         <tbody>
-            <tr ><td>Related home planets and their respective</td></tr>
+            <tr ><th>Related home planets and their respective</th></tr>
             <tr>
-                {planets.map((planetDetails, key) => { return <td key={key}> {planetDetails} </td> })}
+                {/* <th></th> */}
+                <td>{planetsListToShow}</td>
             </tr>
-            <tr><td>population</td></tr>
-
+            <tr><th>Total population</th> <td>{highestPopulationVehicle.totalHomePopulation}</td></tr>
         </tbody>
-
-        <tr>
-            <th>Related pilot names</th>
-            {pilots.map((pilotDetails, key) => { return <td key={key}> {pilotDetails} </td> })}
-        </tr>
+        <tfoot>
+            <tr>
+                <th>Related pilot names</th>
+                <td>{pilotsListToShow}</td>
+            </tr>
+        </tfoot>
     </table>;
 };
 

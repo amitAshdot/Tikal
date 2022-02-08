@@ -1,41 +1,9 @@
-// @font-face {
-//   font-family: 'adoveFnt22';
-//   src: url(https://amitashdot.github.io/targetCall-landing/fonts/ploni-regular-aaa.otf);
-//   font-display: swap;
-
-// }
-
-// @font-face {
-//   font-family: 'adoveFnt22-bold';
-//   src: url(https://amitashdot.github.io/targetCall-landing/fonts/ploni-bold-aaa.otf);
-//   font-display: swap;
-
-// }
-
-// Request URL: https: //targetcall-career.co.il/welcome/moked/wp-content/themes/welcome_theme/assets/fonts/ploni-regular-aaa.otf
-// Request URL: https: //targetcall-career.co.il/welcome/moked/wp-content/themes/welcome_theme/fonts/ploni-bold-aaa.otf
-
-
 @font-face {
   font-family: 'adoveFnt22';
-  src: url(./assets/fonts/ploni-regular-aaa.otf);
+  src: url('https://amitashdot.github.io/targetCall-landing/fonts/ploni-regular-aaa.otf');
   font-display: swap;
 
 }
-
-@font-face {
-  font-family: 'adoveFnt22-bold';
-  src: url(./assets/fonts/ploni-bold-aaa.otf);
-  font-display: swap;
-
-}
-
-// @font-face {
-//   font-family: 'adoveFnt22-ultrabold';
-//   src: url(https://amitashdot.github.io/targetCall-landing/fonts/ploni-ultrabold-aaa.otf);
-//   font-display: swap;
-
-// }
 
 body {
   font-family: 'adoveFnt22', sans-serif;

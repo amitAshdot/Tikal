@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import VehicleContext from '../context/vehicle/vehicleContext'
+import Loading from './Loading';
 import TaskOneTable from './TaskOneTable';
-const Testa = () => {
+const TaskOne = () => {
     const vehicleContext = useContext(VehicleContext);
-    const { getVehicles, isLoading, getAndInitData, calculatePopulationToVehicle, sumMap, planetsMap } = vehicleContext;
+    const { isLoading, getAndInitData, calculatePopulationToVehicle, planetsMap, highestPopulationVehicle, pilotsMap } = vehicleContext;
 
 
     const isInitialMount = useRef(true);
@@ -16,14 +17,12 @@ const Testa = () => {
             calculatePopulationToVehicle()
         }
     }, [planetsMap]);
-
-
-    const table = sumMap ? <TaskOneTable /> : null
-    return <div>
-
-        {!isLoading ? table : 'loading...........'}
-        planets [Tatooine, Alderaan, Naboo, Bespin, Endor].
+    const table = highestPopulationVehicle ? <TaskOneTable /> : null
+    return <div className='taskOne'>
+        <h1 className='taskOne-title'>Did you know?</h1>
+        {!isLoading ? table : <Loading />}
+        {/* <Loading /> */}
     </div>;
 };
 
-export default Testa;
+export default TaskOne;

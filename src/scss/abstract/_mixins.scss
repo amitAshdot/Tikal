@@ -13,51 +13,6 @@
   transform: translate(-50%, -50%);
 }
 
-@mixin inputBasic {
-  font-family: 'adoveFnt22', sans-serif;
-  height: 9rem;
-  border: none;
-  border-radius: 10rem;
-  margin: 1.5rem 0;
-  padding: 0 2.5rem;
-  font-size: 3.5rem;
-
-  @include respond(phone) {
-    height: 7rem;
-    margin-block-end: 1rem;
-    font-size: 3rem;
-  }
-
-  @include respond(phone-small) {
-    margin: 0.8rem;
-  }
-}
-
-@mixin submitBasic($color) {
-  font-family: 'adoveFnt22-bold', sans-serif;
-  position: relative;
-  height: 10rem;
-  border: none;
-  border-radius: 10rem;
-  margin: 2rem 0;
-  padding: 0 2rem;
-  font-size: 5rem;
-  color: $color-white;
-  background-color: $color;
-  width: 50%;
-  align-self: center;
-  margin-block-start: 9rem;
-
-  transition: all 0.5s;
-
-  @include respond(phone) {
-    font-size: 3rem;
-    width: 50%;
-    height: 7rem;
-    margin-block-start: 5rem;
-  }
-}
-
 @mixin buttonHover {
   transform: translate(0.6rem, -0.8rem);
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.6);
@@ -156,26 +111,7 @@
   }
 }
 
-@mixin beforeCheckedBtn {
-  &::before {
-    position: relative;
-    display: inline-block;
-    content: '';
-    width: 0.7rem;
-    height: 0.55rem;
-    z-index: -1;
-    background-image: url(../assets/images/job-section/check@2x.webp);
-    background-repeat: no-repeat;
-    background-size: contain;
-    margin-inline-end: 0.3rem;
-    transition: all 0.2s ease;
 
-    @include respond(mini-desktop) {
-      width: 1.6rem;
-      height: 1.1rem;
-    }
-  }
-}
 
 // --------- BUILT BY Amit Ashdot ---------
 //Media query manager
@@ -197,44 +133,26 @@ $breakpoint argument choices
 -tab-land
 -small-desktop
 -big-desktop
-
-1em =16px
 */
 @mixin respond($breakpoint) {
+
   // @if $breakpoint==phone-small {
   //   @media only screen and (max-width: 26em) {
   //     // 350px - iphone 5 (415px)
   //     @content;
   //   }
   // }
-
-  @if $breakpoint==min-tab-port {
-    @media only screen and (min-width: 47.5em) {
-      // 900px
+  @if $breakpoint==tab-port {
+    @media only screen and (max-width: 47.5em) {
+      // 800px
       @content;
     }
   }
 
-  @if $breakpoint==min-biggest {
-    @media only screen and (min-width: 90em) {
+  @if $breakpoint==small-laptop {
+    @media only screen and(max-width: 90em) {
       // 1440px
       @content;
     }
   }
 }
-
-//- Mixin: Fluid Type
-///
-/// Magic calc + vh to allow text to be fluid between minimum
-/// and maximum breakpoints.
-///
-/// @group typography
-/// @param {variable} $min-font-size [12px] - Minimum font size 
-/// @param {variable} $max-font-size [24px] - Maximum font size
-/// @param {variable} $lower-range [420px] - Stop scaling font smaller at this screen resolution 
-/// @param {variable} $upper-range [900px] - Stop scaling font larger at this screen resolution 
-/// @example
-///   h1 {
-///     @include responsive-type(20px, 48px);
-///   }
-/// @site https://madebymike.com.au/writing/precise-control-responsive-typography/

@@ -1,0 +1,69 @@
+.taskTwo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    // height: 60vh;
+    padding-inline-start: 5rem;
+    padding-inline-end: 5rem;
+
+    @include respond(tab-port) {
+        padding-inline-start: 2rem;
+        padding-inline-end: 2rem;
+    }
+
+    &-title {
+        // height: 5%;
+    }
+
+    .graph {
+        &-container {
+            display: flex;
+            justify-content: space-around;
+            height: 50rem;
+            width: 100%;
+            background: cadetblue;
+            padding: 5rem 3rem 1rem 3rem;
+            text-align: center;
+
+            @include respond(tab-port) {
+                height: 30rem;
+                padding: 2rem 1rem 1rem 1rem;
+            }
+
+        }
+
+        &-candle {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+
+            @include respond(tab-port) {
+                width: 15%;
+
+            }
+
+            &-number {
+                height: 5%;
+                line-height: 1.5rem;
+                font-size: 1.4rem;
+            }
+
+            &-middle {
+                background: antiquewhite;
+            }
+
+            &-text {
+                height: 5%;
+                line-height: 1.5rem;
+                font-size: 1.4rem;
+                padding: 0.5rem;
+
+                @include respond(tab-port) {
+                    height: auto;
+
+                }
+            }
+        }
+    }
+
+}
