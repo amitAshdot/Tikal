@@ -4,6 +4,7 @@ const TaskTwoCandle = (props) => {
     const { maxMin, planet, isLog } = props
     const [height, setHeight] = useState('100%');
 
+
     const calculateHight = () => {
         const { population } = planet;
         if (maxMin) {
@@ -18,16 +19,16 @@ const TaskTwoCandle = (props) => {
                 realHight = (((numberSize / maxMin.max) * 100) * 0.9 + '%');
             }
             setHeight(realHight)
+            // setExponentialNumber(Math.log10(parseInt(population)))
         }
     }
-
     useEffect(() => {
         calculateHight()
     }, [maxMin]);
 
 
     return <div className='graph-candle'>
-        <div className='graph-candle-number'>{planet.population}</div>
+        <div className='graph-candle-number'>{Number.parseInt(planet.population).toExponential(2)}</div>
         <div className='graph-candle-middle' style={{ height: height }}></div>
         <div className='graph-candle-text'>{planet.name}</div>
     </div>;

@@ -397,6 +397,8 @@ body:not(.tabbed) *:focus {
 
 .taskOne table {
   text-align: left;
+  background: #f0f6ff;
+  border: 1px solid #4285f5;
 }
 
 .taskOne table th {
@@ -412,7 +414,7 @@ body:not(.tabbed) *:focus {
 }
 
 .taskOne table tr {
-  border: 1px solid;
+  border: 1px solid #4285f5;
 }
 
 .taskOne table td {
@@ -454,9 +456,10 @@ body:not(.tabbed) *:focus {
       justify-content: space-around;
   height: 50rem;
   width: 100%;
-  background: cadetblue;
   padding: 5rem 3rem 1rem 3rem;
   text-align: center;
+  background: #f0f6ff;
+  border: 1px solid #4285f5;
 }
 
 @media only screen and (max-width: 47.5em) {
@@ -477,6 +480,7 @@ body:not(.tabbed) *:focus {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  width: 10%;
 }
 
 @media only screen and (max-width: 47.5em) {
@@ -492,7 +496,7 @@ body:not(.tabbed) *:focus {
 }
 
 .taskTwo .graph-candle-middle {
-  background: antiquewhite;
+  background: #4285f5;
 }
 
 .taskTwo .graph-candle-text {
@@ -513,6 +517,48 @@ body:not(.tabbed) *:focus {
   width: 30rem;
   background: transparent;
   border-radius: 10rem;
+  border: 2px solid #4285f5;
+  color: #4285f5;
+  background-color: #f0f6ff;
+  padding: 0.6rem 1rem;
+  text-align: center;
+  font-size: 1.125rem;
+  font-family: "adoveFnt22", sans-serif;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  z-index: 1;
+  -webkit-transition: color 0.2s ease;
+  -o-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+.taskTwo button::after {
+  position: absolute;
+  content: "";
+  width: calc(100% + 4px);
+  height: 0;
+  inset-block-start: -2px;
+  inset-inline-end: -2px;
+  z-index: -1;
+  background-color: #4285f5;
+  -webkit-transition: height 0.2s ease;
+  -o-transition: height 0.2s ease;
+  transition: height 0.2s ease;
+}
+
+.taskTwo button:hover, .taskTwo button:focus {
+  color: #f0f6ff;
+  border: 2px solid #4285f5;
+}
+
+.taskTwo button:hover::after, .taskTwo button:focus::after {
+  height: calc(100% + 4px);
 }
 
 @media only screen and (max-width: 47.5em) {
