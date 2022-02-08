@@ -133,26 +133,24 @@ $breakpoint argument choices
 -tab-land
 -small-desktop
 -big-desktop
-
-1em =16px
 */
 @mixin respond($breakpoint) {
+
   // @if $breakpoint==phone-small {
   //   @media only screen and (max-width: 26em) {
   //     // 350px - iphone 5 (415px)
   //     @content;
   //   }
   // }
-
-  @if $breakpoint==min-tab-port {
-    @media only screen and (min-width: 47.5em) {
-      // 900px
+  @if $breakpoint==tab-port {
+    @media only screen and (max-width: 47.5em) {
+      // 800px
       @content;
     }
   }
 
-  @if $breakpoint==min-biggest {
-    @media only screen and (min-width: 90em) {
+  @if $breakpoint==small-laptop {
+    @media only screen and(max-width: 90em) {
       // 1440px
       @content;
     }

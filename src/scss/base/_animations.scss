@@ -1,3 +1,13 @@
+@keyframes noneToFullWidth {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;

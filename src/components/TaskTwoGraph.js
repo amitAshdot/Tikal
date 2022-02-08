@@ -5,11 +5,11 @@ const TaskTwoGraph = () => {
     const vehicleContext = useContext(VehicleContext);
     const { pilotsMap, planetsNames, planetsList, setPlanetsList } = vehicleContext;
 
-    const [height, setHeight] = useState(0);
+    const [maxMin, setMaxMin] = useState({});
     const [relevant, setRelevant] = useState([]);
 
     const findMax = () => {
-        let max = 0
+        let max = 0, min = 999999999999999999999
         let planets = []
         planets.push(...planetsList.filter(planet => planet.name === planetsNames[planetsNames.indexOf(planet.name)]));
         planets.forEach(planet => {
@@ -17,21 +17,26 @@ const TaskTwoGraph = () => {
             let planetPopulationInt = parseInt(planet.population)
             if (planetPopulationInt > max && !isNaN(planetPopulationInt))
                 max = planetPopulationInt
+            if (planetPopulationInt < min && !isNaN(planetPopulationInt))
+                min = planetPopulationInt
+
         })
-        setHeight(max)
+        max = Math.log10(max)
+        min = Math.log10(min)
+        setMaxMin({ max, min })
         setPlanetsList(planets)
         setRelevant(planets)
         return max
     }
 
-    const taskCandles = relevant.length > 0 ? relevant.map((planet, key) => <TaskTwoCandle max={height} planet={planet} key={key} />) : null
+    const taskCandles = relevant.length > 0 ? relevant.map((planet, key) => <TaskTwoCandle maxMin={maxMin} planet={planet} key={key} />) : null
     useEffect(() => {
         findMax()
     }, []);
 
     return <div className='graph-container'>
 
-        {height && (
+        {maxMin && (
             <>
                 {taskCandles}
             </>

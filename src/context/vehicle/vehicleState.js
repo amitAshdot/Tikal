@@ -34,8 +34,8 @@ const VehicleState = props => {
 
         //task2
         planetsNames: ['Tatooine', 'Alderaan', 'Naboo', 'Bespin', 'Endor'],
-        planetsList: taskTwoPlanets,
-        // planetsList: []
+        // planetsList: taskTwoPlanets,
+        planetsList: []
     };
     const [state, dispatch] = useReducer(vehicleReducer, initialState);
 
@@ -95,10 +95,8 @@ const VehicleState = props => {
                 pageNum++
                 list = [...list, ...res.data.results]
             }
-            // fetchSuccess(peopleList)
         } catch (err) {
             if (list.length > 0)
-                // console.log(list)
                 fetchSuccess()
             else
                 fetchFailed(err)
@@ -118,25 +116,6 @@ const VehicleState = props => {
         }
     }
 
-    // const getVehiclesByMap = async (vehicleMap) => {
-    //     let keys = vehicleMap.keys();
-    //     let vehiclesList = [];
-
-    //     fetchStart()
-    //     try {
-    //         for (let i = 0; i < vehicleMap.size; i++) {
-    //             let iterator = keys.next()
-    //             const res = await axios.get(vehicleMap.get(iterator.value));
-    //             vehiclesList = [...vehiclesList, res.data]
-    //         }
-    //         console.log('vehiclesList: ', vehiclesList)
-    //         dispatch({ type: FETCH_VEHICLES_SUCCESS, payload: vehiclesList });
-    //     } catch (err) {
-    //         fetchFailed(err)
-    //     }
-    //     return vehiclesList
-    // }
-
     const getPlanetsByMap = async (planetsMap) => {
         let keys = planetsMap.keys();
         let planetsList = [];
@@ -147,7 +126,6 @@ const VehicleState = props => {
                 const res = await axios.get(`${planetsMap.get(keys.next().value)}/`);
                 planetsList = [...planetsList, res.data]
             }
-            console.log('planetsList: ', planetsList)
             dispatch({ type: FETCH_PLANETS_SUCCESS, payload: planetsList });
         } catch (err) {
             fetchFailed(err)
@@ -172,7 +150,6 @@ const VehicleState = props => {
             const searchNames = planetNames.toString().replace(/,/g, "&")
             const res = await axios.get(`${url}/planets/?name=${searchNames}`);
             dispatch({ type: FETCH_PLANETS_SUCCESS, payload: res.data.results });
-            console.log('results:', res.data.results)
             return res.data.results
         } catch (err) {
             fetchFailed(err)

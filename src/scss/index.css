@@ -16,9 +16,24 @@ $breakpoint argument choices
 -tab-land
 -small-desktop
 -big-desktop
-
-1em =16px
 */
+@-webkit-keyframes noneToFullWidth {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes noneToFullWidth {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
 @-webkit-keyframes fadeIn {
   0% {
     opacity: 0;
@@ -27,6 +42,7 @@ $breakpoint argument choices
     opacity: 1;
   }
 }
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -163,7 +179,7 @@ $breakpoint argument choices
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  direction: rtl;
+  direction: ltr;
   overflow-x: hidden;
   cursor: default;
 }
@@ -176,7 +192,7 @@ html {
   position: relative;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
-  font-size: calc(100vw * 0.04444444);
+  font-size: 16px;
   min-height: 0vw;
 }
 
@@ -184,17 +200,15 @@ html::-webkit-scrollbar {
   display: none;
 }
 
-@media only screen and (min-width: 47.5em) {
+@media only screen and (max-width: 90em) {
   html {
     font-size: calc(100vw * 0.011111111);
   }
 }
 
-@media only screen and (min-width: 90em) {
+@media only screen and (max-width: 47.5em) {
   html {
-    font-size: 16px;
-    max-width: 1440px;
-    margin: auto;
+    font-size: 2.1111vw;
   }
 }
 
@@ -204,12 +218,6 @@ body {
           box-sizing: border-box;
   max-width: 1920px;
   margin-inline: auto;
-}
-
-@media only screen and (min-width: 90em) {
-  body {
-    background: #ffffff;
-  }
 }
 
 ::-moz-selection {
@@ -318,9 +326,23 @@ body:not(.tabbed) *:focus {
   margin-bottom: 4rem !important;
 }
 
+@media only screen and (max-width: 47.5em) {
+  .u-margin-botton-medium {
+    -webkit-margin-after: 1.5rem !important;
+            margin-block-end: 1.5rem !important;
+  }
+}
+
 .u-margin-botton-big {
   -webkit-margin-after: 8rem !important;
           margin-block-end: 8rem !important;
+}
+
+@media only screen and (max-width: 47.5em) {
+  .u-margin-botton-big {
+    -webkit-margin-after: 5rem !important;
+            margin-block-end: 5rem !important;
+  }
 }
 
 .u-margin-top-medium {
@@ -328,13 +350,32 @@ body:not(.tabbed) *:focus {
           margin-block-end: 6rem !important;
 }
 
+@media only screen and (max-width: 47.5em) {
+  .u-margin-top-medium {
+    -webkit-margin-after: 3rem !important;
+            margin-block-end: 3rem !important;
+  }
+}
+
 .u-margin-top-big {
   -webkit-margin-after: 8rem !important;
           margin-block-end: 8rem !important;
 }
 
+@media only screen and (max-width: 47.5em) {
+  .u-margin-top-big {
+    margin-bottom: 4rem !important;
+  }
+}
+
 .u-margin-top-huge {
   margin-bottom: 8rem !important;
+}
+
+@media only screen and (max-width: 47.5em) {
+  .u-margin-top-huge {
+    margin-bottom: 4rem !important;
+  }
 }
 
 .u-hidden {
@@ -349,7 +390,12 @@ body:not(.tabbed) *:focus {
   display: none;
 }
 
-.taskTwo {
+.taskOne {
+  position: relative;
+  -webkit-margin-before: 5rem;
+          margin-block-start: 5rem;
+  -webkit-margin-after: 5rem;
+          margin-block-end: 5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -357,18 +403,85 @@ body:not(.tabbed) *:focus {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 60vh;
+  -webkit-padding-start: 5rem;
+          padding-inline-start: 5rem;
+  -webkit-padding-end: 5rem;
+          padding-inline-end: 5rem;
+}
+
+@media only screen and (max-width: 47.5em) {
+  .taskOne {
+    -webkit-padding-start: 2rem;
+            padding-inline-start: 2rem;
+    -webkit-padding-end: 2rem;
+            padding-inline-end: 2rem;
+  }
+}
+
+.taskOne table {
+  text-align: left;
+}
+
+.taskOne table th {
+  padding: 2rem;
+}
+
+@media only screen and (max-width: 47.5em) {
+  .taskOne table th {
+    padding: 2rem;
+    width: 100%;
+  }
+}
+
+.taskOne table td {
+  padding: 1rem 2rem;
+}
+
+.taskTwo {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-padding-start: 5rem;
+          padding-inline-start: 5rem;
+  -webkit-padding-end: 5rem;
+          padding-inline-end: 5rem;
+}
+
+@media only screen and (max-width: 47.5em) {
+  .taskTwo {
+    -webkit-padding-start: 2rem;
+            padding-inline-start: 2rem;
+    -webkit-padding-end: 2rem;
+            padding-inline-end: 2rem;
+  }
 }
 
 .taskTwo .graph-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   height: 50rem;
+  width: 100%;
+  background: cadetblue;
+  padding: 5rem 3rem 1rem 3rem;
+  text-align: center;
+}
+
+@media only screen and (max-width: 47.5em) {
+  .taskTwo .graph-container {
+    height: 30rem;
+    padding: 2rem 1rem 1rem 1rem;
+  }
 }
 
 .taskTwo .graph-candle {
-  background: cadetblue;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -379,6 +492,12 @@ body:not(.tabbed) *:focus {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+}
+
+@media only screen and (max-width: 47.5em) {
+  .taskTwo .graph-candle {
+    width: 15%;
+  }
 }
 
 .taskTwo .graph-candle-number {
@@ -395,5 +514,78 @@ body:not(.tabbed) *:focus {
   height: 5%;
   line-height: 1.5rem;
   font-size: 1.4rem;
+  padding: 0.5rem;
+}
+
+@media only screen and (max-width: 47.5em) {
+  .taskTwo .graph-candle-text {
+    height: auto;
+  }
+}
+
+.loading-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  direction: rtl;
+}
+
+.loading-screen.off {
+  opacity: 1;
+  -webkit-animation: fadeOut 3s ease-in-out forwards;
+          animation: fadeOut 3s ease-in-out forwards;
+}
+
+.loading-screen .lightsaber {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 10rem;
+  height: 100%;
+}
+
+.loading-screen .lightsaber-handle {
+  width: 22%;
+  max-width: 150px;
+  height: 20rem;
+  background: url("../images/Lightsaber.png");
+  background-repeat: no-repeat;
+  background-position: 10% center;
+  background-size: contain;
+  z-index: 5;
+}
+
+.loading-screen .lightsaber-light {
+  border: 1px solid;
+  width: 78%;
+  height: 1.5rem;
+  max-width: 495px;
+  -webkit-filter: drop-shadow(0px 0px 43px #fefeff);
+          filter: drop-shadow(0px 0px 43px #fefeff);
+  border-radius: 0 1rem 1rem 0;
+  border: 1px solid #b7b6f9;
+}
+
+.loading-screen .lightsaber-light::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 0%;
+  height: 1.5rem;
+  background-color: #b7b6f9;
+  border-radius: 0 1.5rem 1.5rem 0;
+  z-index: 2;
+  -webkit-animation: noneToFullWidth 3s ease-in-out forwards;
+          animation: noneToFullWidth 3s ease-in-out forwards;
 }
 /*# sourceMappingURL=index.css.map */

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from 'react'
 import VehicleContext from '../context/vehicle/vehicleContext'
 const TaskTwoCandle = (props) => {
-    const { max, planet } = props
+    const { maxMin, planet } = props
     const vehicleContext = useContext(VehicleContext);
     const { pilotsMap, planetsNames, planetsList } = vehicleContext;
     const [height, setHeight] = useState('100%');
@@ -9,12 +9,12 @@ const TaskTwoCandle = (props) => {
     // useEffe
     const calculateHight = () => {
         const { population } = planet;
-        if (max) {
-            debugger
-            let numberSize = Math.log10(parseInt(population));
-            let realHighet = (((numberSize / Math.log10(max)) * 100) * 0.9 + '%');
-            setHeight(realHighet);
-            // setHeight()
+        if (maxMin) {
+            let distance = maxMin.max - maxMin.min
+            let minimumHight = maxMin.min - 1
+            let numberSize = Math.log10(parseInt(population)) - minimumHight;
+            let realHight = (((numberSize / (maxMin.max - distance)) * 100) * 0.9 + '%');
+            setHeight(realHight);
         }
     }
 
