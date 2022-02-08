@@ -17,23 +17,6 @@ $breakpoint argument choices
 -small-desktop
 -big-desktop
 */
-@-webkit-keyframes noneToFullWidth {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 100%;
-  }
-}
-@keyframes noneToFullWidth {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 100%;
-  }
-}
-
 @-webkit-keyframes fadeIn {
   0% {
     opacity: 0;
@@ -42,7 +25,6 @@ $breakpoint argument choices
     opacity: 1;
   }
 }
-
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -108,16 +90,10 @@ $breakpoint argument choices
 
 @-webkit-keyframes moveInLeft {
   0% {
-    opacity: 0;
-    -webkit-transform: translateX(20%);
-            transform: translateX(20%);
-  }
-  90% {
-    -webkit-transform: translateX(-0.5rem);
-            transform: translateX(-0.5rem);
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
   }
   100% {
-    opacity: 1;
     -webkit-transform: translateX(0);
             transform: translateX(0);
   }
@@ -125,16 +101,10 @@ $breakpoint argument choices
 
 @keyframes moveInLeft {
   0% {
-    opacity: 0;
-    -webkit-transform: translateX(20%);
-            transform: translateX(20%);
-  }
-  90% {
-    -webkit-transform: translateX(-0.5rem);
-            transform: translateX(-0.5rem);
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
   }
   100% {
-    opacity: 1;
     -webkit-transform: translateX(0);
             transform: translateX(0);
   }
@@ -537,6 +507,8 @@ body:not(.tabbed) *:focus {
 .taskTwo button {
   padding: 1rem;
   width: 30rem;
+  background: transparent;
+  border-radius: 10rem;
 }
 
 @media only screen and (max-width: 47.5em) {
@@ -567,13 +539,13 @@ body:not(.tabbed) *:focus {
   content: 'click to toggle';
   position: absolute;
   left: 0;
-  width: 0%;
+  width: 100%;
   height: 1.5rem;
   background-color: #b7b6f9;
   border-radius: 0 1.5rem 1.5rem 0;
   z-index: 2;
-  -webkit-animation: noneToFullWidth 3s ease-in-out forwards;
-          animation: noneToFullWidth 3s ease-in-out forwards;
+  -webkit-animation: moveInLeft 3s ease-in-out forwards;
+          animation: moveInLeft 3s ease-in-out forwards;
 }
 
 .taskTwo button .lightsaber {
@@ -679,13 +651,16 @@ body:not(.tabbed) *:focus {
   content: '';
   position: absolute;
   left: 0;
-  width: 0%;
+  width: 100%;
+  -webkit-transform: translateX(0%);
+      -ms-transform: translateX(0%);
+          transform: translateX(0%);
   height: 1.5rem;
   background-color: #b7b6f9;
   border-radius: 0 1.5rem 1.5rem 0;
   z-index: 2;
-  -webkit-animation: noneToFullWidth 3s ease-in-out forwards;
-          animation: noneToFullWidth 3s ease-in-out forwards;
+  -webkit-animation: moveInLeft 3s ease-in-out forwards;
+          animation: moveInLeft 3s ease-in-out forwards;
 }
 
 .loading-screen.finish {

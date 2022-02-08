@@ -39,13 +39,14 @@
                 content: '';
                 position: absolute;
                 left: 0;
-                width: 0%;
+                width: 100%;
+                transform: translateX(0%);
                 height: 1.5rem;
                 background-color: #b7b6f9;
                 border-radius: 0 1.5rem 1.5rem 0;
                 z-index: 2;
 
-                animation: noneToFullWidth 3s ease-in-out forwards;
+                animation: moveInLeft 3s ease-in-out forwards;
             }
         }
     }
