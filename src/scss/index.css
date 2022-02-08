@@ -411,6 +411,10 @@ body:not(.tabbed) *:focus {
   }
 }
 
+.taskOne table tr {
+  border: 1px solid;
+}
+
 .taskOne table td {
   padding: 1rem 2rem;
 }
