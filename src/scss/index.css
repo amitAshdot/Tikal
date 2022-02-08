@@ -497,6 +497,9 @@ body:not(.tabbed) *:focus {
 
 .taskTwo .graph-candle-middle {
   background: #4285f5;
+  -webkit-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
 }
 
 .taskTwo .graph-candle-text {

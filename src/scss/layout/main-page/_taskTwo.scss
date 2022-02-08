@@ -38,7 +38,6 @@
 
             @include respond(tab-port) {
                 width: 15%;
-
             }
 
             &-number {
@@ -49,6 +48,7 @@
 
             &-middle {
                 background: $color-primary;
+                transition: all 1s;
             }
 
             &-text {
