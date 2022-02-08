@@ -6,8 +6,12 @@
     flex-direction: column;
     padding-inline-start: 5rem;
     padding-inline-end: 5rem;
-    min-height: 40vh;
+    min-height: 50vh;
 
+    .loading-screen {
+        min-height: 50vh;
+
+    }
 
     @include respond(tab-port) {
         padding-inline-start: 2rem;
@@ -18,7 +22,8 @@
         text-align: left;
 
         th {
-            padding: 2rem;
+            padding: 1rem;
+            font-size: 1.5rem;
 
             @include respond(tab-port) {
                 padding: 2rem;
@@ -26,10 +31,6 @@
             }
 
         }
-
-        // tr:nth-child(2) {
-        //     text-align: right;
-        // }
 
         td {
             padding: 1rem 2rem;

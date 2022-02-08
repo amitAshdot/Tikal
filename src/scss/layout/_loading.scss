@@ -54,4 +54,8 @@
             }
         }
     }
+
+    &.finish {
+        animation: fadeOut 1s linear forwards 1s;
+    }
 }

@@ -21,7 +21,9 @@ const TaskOne = () => {
 
     return <div className='taskOne'>
         <h1 className='taskOne-title'>Did you know?</h1>
-        {!isLoading ? table : <Loading />}
+        {!isLoading ? table : null}
+        {!isLoading ? <Loading extraClass={'finish'} /> : <Loading extraClass={''} />}
+
     </div>;
 };
 

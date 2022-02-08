@@ -59,8 +59,9 @@ const ApppState = props => {
         const categories = { "people": "people", 'vehicle': 'vehicle', 'planets': 'planets' }
         let list = [], pageNum = 1
         try {
-            fetchStart()
             while (pageNum) {
+                fetchStart()
+
                 const res = await axios.get(`${url}/${categories[category]}/?page=${pageNum}`);
                 list = [...list, ...res.data.results]
                 pageNum = res.data.next.slice(res.data.next.lastIndexOf('=') + 1, res.data.next.length)

@@ -13,7 +13,6 @@ const App = () => {
         <div className="App">
           <TaskOne />
           <TaskTwo />
-          {/* <Loading /> */}
         </div>
       </Suspense>
     </ApppState>

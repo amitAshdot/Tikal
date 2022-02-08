@@ -407,7 +407,11 @@ body:not(.tabbed) *:focus {
           padding-inline-start: 5rem;
   -webkit-padding-end: 5rem;
           padding-inline-end: 5rem;
-  min-height: 40vh;
+  min-height: 50vh;
+}
+
+.taskOne .loading-screen {
+  min-height: 50vh;
 }
 
 @media only screen and (max-width: 47.5em) {
@@ -424,7 +428,8 @@ body:not(.tabbed) *:focus {
 }
 
 .taskOne table th {
-  padding: 2rem;
+  padding: 1rem;
+  font-size: 1.5rem;
 }
 
 @media only screen and (max-width: 47.5em) {
@@ -683,5 +688,10 @@ body:not(.tabbed) *:focus {
   z-index: 2;
   -webkit-animation: noneToFullWidth 3s ease-in-out forwards;
           animation: noneToFullWidth 3s ease-in-out forwards;
+}
+
+.loading-screen.finish {
+  -webkit-animation: fadeOut 1s linear forwards 1s;
+          animation: fadeOut 1s linear forwards 1s;
 }
 /*# sourceMappingURL=index.css.map */

@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-const Loading = () => {
+const Loading = ({ extraClass }) => {
 
-    return <div className='loading-screen'>
+    useEffect(() => {
+    }, [extraClass]);
+
+    return <div className={`loading-screen ${extraClass}`}>
         <div className='lightsaber'>
             <div className='lightsaber-handle'></div>
             <div className='lightsaber-light'></div>
