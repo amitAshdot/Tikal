@@ -20,11 +20,8 @@ const TaskTwo = () => {
         <h1 className='taskTwo-title'>Task No.2 Graph</h1>
         <button onClick={toggleLog}>
             {buttonText}
-            {/* <div className='lightsaber'>
-                <div className='lightsaber-handle'><img src={Lightsaber} alt='lightsbar-handle' /></div>
-                <div className='lightsaber-light'>{buttonText}</div>
-            </div> */}
         </button>
+        <h3 className='taskTwo-title'>Population size</h3>
         <p> {chartText}</p>
         {planetsList.length ? <TaskTwoGraph isLog={isLog} /> : null}
         {planetsList.length ? <Loading extraClass={'finish'} /> : <Loading extraClass={''} />}

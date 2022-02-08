@@ -6,6 +6,7 @@
     height: 100%;
     background: black;
     direction: rtl;
+    z-index: 2;
 
     .lightsaber {
         display: flex;
@@ -23,7 +24,7 @@
             background-repeat: no-repeat;
             background-position: 10% center;
             background-size: contain;
-            z-index: 5;
+            z-index: 2;
         }
 
         &-light {
