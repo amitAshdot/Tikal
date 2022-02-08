@@ -58,6 +58,7 @@ $breakpoint argument choices
   }
   100% {
     opacity: 0;
+    z-index: -1;
   }
 }
 
@@ -67,6 +68,7 @@ $breakpoint argument choices
   }
   100% {
     opacity: 0;
+    z-index: -1;
   }
 }
 
@@ -456,6 +458,8 @@ body:not(.tabbed) *:focus {
           padding-inline-start: 5rem;
   -webkit-padding-end: 5rem;
           padding-inline-end: 5rem;
+  -webkit-margin-after: 4rem;
+          margin-block-end: 4rem;
   min-height: 40vh;
 }
 
@@ -560,7 +564,7 @@ body:not(.tabbed) *:focus {
 }
 
 .taskTwo button:hover .lightsaber-light:after {
-  content: '';
+  content: 'click to toggle';
   position: absolute;
   left: 0;
   width: 0%;
@@ -615,7 +619,7 @@ body:not(.tabbed) *:focus {
 }
 
 .taskTwo button .lightsaber-light:after {
-  content: '';
+  content: 'click to toggle';
   position: absolute;
   left: 0;
   width: 0%;
@@ -632,12 +636,6 @@ body:not(.tabbed) *:focus {
   height: 100%;
   background: black;
   direction: rtl;
-}
-
-.loading-screen.off {
-  opacity: 1;
-  -webkit-animation: fadeOut 3s ease-in-out forwards;
-          animation: fadeOut 3s ease-in-out forwards;
 }
 
 .loading-screen .lightsaber {
@@ -691,7 +689,7 @@ body:not(.tabbed) *:focus {
 }
 
 .loading-screen.finish {
-  -webkit-animation: fadeOut 1s linear forwards 1s;
-          animation: fadeOut 1s linear forwards 1s;
+  -webkit-animation: fadeOut 1s linear forwards;
+          animation: fadeOut 1s linear forwards;
 }
 /*# sourceMappingURL=index.css.map */

@@ -25,7 +25,9 @@ const TaskTwo = () => {
             </div>
         </button>
         <p> {chartText}</p>
-        {planetsList.length ? <TaskTwoGraph isLog={isLog} /> : <Loading />}
+        {planetsList.length ? <TaskTwoGraph isLog={isLog} /> : null}
+        {planetsList.length ? <Loading extraClass={'finish'} /> : <Loading extraClass={''} />}
+
         {/* {planetsList.length ? <TaskTwoGraph isLog={false} /> : <Loading />} */}
     </div>;
 };

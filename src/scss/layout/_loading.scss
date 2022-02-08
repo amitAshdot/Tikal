@@ -7,11 +7,6 @@
     background: black;
     direction: rtl;
 
-    &.off {
-        opacity: 1;
-        animation: fadeOut 3s ease-in-out forwards;
-    }
-
     .lightsaber {
         display: flex;
         position: relative;
@@ -56,6 +51,6 @@
     }
 
     &.finish {
-        animation: fadeOut 1s linear forwards 1s;
+        animation: fadeOut 1s linear forwards;
     }
 }
