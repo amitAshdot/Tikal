@@ -18,6 +18,7 @@ import {
     FETCH_START,
     FETCH_FAILED,
     FETCH_SUCCESS,
+    FETCH_PEOPLE_SUCCESS,
     FETCH_PILOTS_SUCCESS,
     FETCH_VEHICLES_SUCCESS,
     FETCH_PLANETS_SUCCESS,
@@ -31,7 +32,7 @@ const VehicleState = props => {
         pilotsMap: null,
         planetsMap: null,
         highestPopulationVehicle: null,
-
+        peopleList: null,
         //task2
         planetsNames: ['Tatooine', 'Alderaan', 'Naboo', 'Bespin', 'Endor'],
         // planetsList: taskTwoPlanets,
@@ -49,6 +50,9 @@ const VehicleState = props => {
     };
     const fetchSuccess = (error) => {
         dispatch({ type: FETCH_SUCCESS });
+    };
+    const fetchPeopleSuccess = (data) => {
+        dispatch({ type: FETCH_PEOPLE_SUCCESS, payload: data });
     };
 
     ///--- SETTERS ---
@@ -86,20 +90,18 @@ const VehicleState = props => {
 
     const getAllByCategoryAPI = async (category) => {
         const categories = { "people": "people", 'vehicle': 'vehicle', 'planets': 'planets' }
-        let list = [], status = 200, pageNum = 1
+        let list = [], pageNum = 1
         fetchStart()
+        // "next": "https://swapi.py4e.com/api/people/?page=3", 
         try {
-            while (status === 200) {
+            while (pageNum) {
                 const res = await axios.get(`${url}/${categories[category]}/?page=${pageNum}`);
-                status = res.status
-                pageNum++
                 list = [...list, ...res.data.results]
+                pageNum = res.data.next.slice(res.data.next.lastIndexOf('=') + 1, res.data.next.length)
+                fetchPeopleSuccess(list)
             }
         } catch (err) {
-            if (list.length > 0)
-                fetchSuccess()
-            else
-                fetchFailed(err)
+            fetchFailed(err)
         }
         return list
     }

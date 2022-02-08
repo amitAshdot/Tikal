@@ -7,6 +7,7 @@ import {
     FETCH_START,
     FETCH_FAILED,
     FETCH_SUCCESS,
+    FETCH_PEOPLE_SUCCESS,
     FETCH_PILOTS_SUCCESS,
     FETCH_VEHICLES_SUCCESS,
     FETCH_PLANETS_SUCCESS,
@@ -31,6 +32,12 @@ export default (state, action) => {
             return {
                 ...state,
                 isLoading: false
+            }
+        case FETCH_PEOPLE_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                peopleList: action.payload
             }
 
         case FETCH_PILOTS_SUCCESS:
