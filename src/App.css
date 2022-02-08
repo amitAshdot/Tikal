@@ -1,7 +1,0 @@
-@media (prefers-reduced-motion: no-preference) {}
-
-table,
-tbody {
-    border: 1px solid black;
-    border-collapse: collapse;
-}

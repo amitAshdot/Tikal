@@ -525,6 +525,100 @@ body:not(.tabbed) *:focus {
   }
 }
 
+.taskTwo button {
+  padding: 1rem;
+  width: 30rem;
+}
+
+@media only screen and (max-width: 47.5em) {
+  .taskTwo button {
+    width: 100%;
+  }
+}
+
+.taskTwo button:hover .lightsaber-light {
+  position: relative;
+  border: 1px solid;
+  width: 78%;
+  height: 1.5rem;
+  max-width: 495px;
+  -webkit-filter: drop-shadow(0px 0px 43px #fefeff);
+          filter: drop-shadow(0px 0px 43px #fefeff);
+  border-radius: 0 1rem 1rem 0;
+  border: 1px solid #b7b6f9;
+}
+
+@media only screen and (max-width: 47.5em) {
+  .taskTwo button:hover .lightsaber-light {
+    height: 2.5rem;
+  }
+}
+
+.taskTwo button:hover .lightsaber-light:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 0%;
+  height: 1.5rem;
+  background-color: #b7b6f9;
+  border-radius: 0 1.5rem 1.5rem 0;
+  z-index: 2;
+  -webkit-animation: noneToFullWidth 3s ease-in-out forwards;
+          animation: noneToFullWidth 3s ease-in-out forwards;
+}
+
+.taskTwo button .lightsaber {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+}
+
+.taskTwo button .lightsaber-handle {
+  width: 22%;
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
+}
+
+.taskTwo button .lightsaber-handle > img {
+  width: 100%;
+}
+
+.taskTwo button .lightsaber-light {
+  position: relative;
+  border: 1px solid;
+  width: 78%;
+  height: 1.5rem;
+  max-width: 495px;
+  -webkit-filter: drop-shadow(0px 0px 43px #fefeff);
+          filter: drop-shadow(0px 0px 43px #fefeff);
+  border-radius: 0 1rem 1rem 0;
+  border: 1px solid #b7b6f9;
+}
+
+@media only screen and (max-width: 47.5em) {
+  .taskTwo button .lightsaber-light {
+    height: 2.5rem;
+  }
+}
+
+.taskTwo button .lightsaber-light:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 0%;
+  background-color: #b7b6f9;
+  border-radius: 0 1.5rem 1.5rem 0;
+  z-index: 2;
+}
+
 .loading-screen {
   position: absolute;
   top: 0;

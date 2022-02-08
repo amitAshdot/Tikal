@@ -1,77 +1,52 @@
 import React, { useReducer } from 'react';
 import axios from 'axios';
-import vehicleContext from './vehicleContext';
-import vehicleReducer from './vehicleReducer'
+import vehicleContext from './appContext';
+import vehicleReducer from './appReducer'
 import { url } from '../../utils/api'
-import mockVehicleResults from '../../mockData/vehicles.json'
-import mockPeopleResults from '../../mockData/people.json'
+// import mockVehicleResults from '../../mockData/vehicles.json'
 // import mockPeopleResults from '../../mockData/people.json'
-import mockPlanetsResults from '../../mockData/planets.json'
-import taskTwoPlanets from '../../mockData/taskTwoPlanets.json'
+// import mockPeopleResults from '../../mockData/people.json'
+// import mockPlanetsResults from '../../mockData/planets.json'
+// import taskTwoPlanets from '../../mockData/taskTwoPlanets.json'
 
 import {
     SET_PILOTS,
     SET_PLANETS,
-    SET_SUM_MAP,
     SET_HIGHEST_POPULATION_VEHICLE,
     SET_PLANETS_LIST,
     FETCH_START,
     FETCH_FAILED,
-    FETCH_SUCCESS,
     FETCH_PEOPLE_SUCCESS,
-    FETCH_PILOTS_SUCCESS,
     FETCH_VEHICLES_SUCCESS,
     FETCH_PLANETS_SUCCESS,
 } from '../type';
 
-const VehicleState = props => {
+const ApppState = props => {
     const initialState = {
         isLoading: false,
         error: null,
-        //task 1
+        //-- task 1 --
         pilotsMap: null,
         planetsMap: null,
         highestPopulationVehicle: null,
         peopleList: null,
-        //task2
+        //-- task2 --
         planetsNames: ['Tatooine', 'Alderaan', 'Naboo', 'Bespin', 'Endor'],
-        // planetsList: taskTwoPlanets,
-        planetsList: []
+        planetsList: [],
+        filtteredPlanetsList: null,
     };
     const [state, dispatch] = useReducer(vehicleReducer, initialState);
 
     ///--- FETCH ---
-    const fetchStart = () => {
-        dispatch({ type: FETCH_START });
-
-    };
-    const fetchFailed = (error) => {
-        dispatch({ type: FETCH_FAILED, payload: error });
-    };
-    const fetchSuccess = (error) => {
-        dispatch({ type: FETCH_SUCCESS });
-    };
-    const fetchPeopleSuccess = (data) => {
-        dispatch({ type: FETCH_PEOPLE_SUCCESS, payload: data });
-    };
+    const fetchStart = () => { dispatch({ type: FETCH_START }); };
+    const fetchFailed = (error) => { dispatch({ type: FETCH_FAILED, payload: error }); };
+    const fetchPeopleSuccess = (data) => { dispatch({ type: FETCH_PEOPLE_SUCCESS, payload: data }); };
 
     ///--- SETTERS ---
-    const setPilotsByMap = (PilotMap) => {
-        dispatch({ type: SET_PILOTS, payload: PilotMap });
-    }
-
-    const setPlanetsByMap = (PlanetMap) => {
-        dispatch({ type: SET_PLANETS, payload: PlanetMap });
-    }
-
-    const setHighestPopulationVehicle = (vehicleObject) => {
-        dispatch({ type: SET_HIGHEST_POPULATION_VEHICLE, payload: vehicleObject });
-    }
-
-
-    const setPlanetsList = (planetList) => {
-        dispatch({ type: SET_PLANETS_LIST, payload: planetList });
-    }
+    const setPilotsByMap = (PilotMap) => { dispatch({ type: SET_PILOTS, payload: PilotMap }); }
+    const setPlanetsByMap = (PlanetMap) => { dispatch({ type: SET_PLANETS, payload: PlanetMap }); }
+    const setHighestPopulationVehicle = (vehicleObject) => { dispatch({ type: SET_HIGHEST_POPULATION_VEHICLE, payload: vehicleObject }); }
+    const setPlanetsList = (planetList) => { dispatch({ type: SET_PLANETS_LIST, payload: planetList }); }
 
     ///--- GETTERS ---
     const getObjectFromURL = (url) => {
@@ -80,26 +55,17 @@ const VehicleState = props => {
         return { id: id, url: cleanUrl }
     }
 
-    const getPilotById = (id) => {
-        return state.pilotsMap.get(id)
-    }
-
-    const getPlanetById = (id) => {
-        return state.planetsMap.get(id)
-    }
-
     const getAllByCategoryAPI = async (category) => {
         const categories = { "people": "people", 'vehicle': 'vehicle', 'planets': 'planets' }
         let list = [], pageNum = 1
-        fetchStart()
-        // "next": "https://swapi.py4e.com/api/people/?page=3", 
         try {
+            fetchStart()
             while (pageNum) {
                 const res = await axios.get(`${url}/${categories[category]}/?page=${pageNum}`);
                 list = [...list, ...res.data.results]
                 pageNum = res.data.next.slice(res.data.next.lastIndexOf('=') + 1, res.data.next.length)
-                fetchPeopleSuccess(list)
             }
+            fetchPeopleSuccess(list)
         } catch (err) {
             fetchFailed(err)
         }
@@ -133,17 +99,6 @@ const VehicleState = props => {
             fetchFailed(err)
         }
         return planetsList
-    }
-
-    const getPlanetsByName = async (planetName) => {
-        fetchStart()
-        try {
-            const res = await axios.get(`${url}/planets/?search=${planetName}`);
-            dispatch({ type: FETCH_PLANETS_SUCCESS, payload: res.data });
-            return res.data
-        } catch (err) {
-            fetchFailed(err)
-        }
     }
 
     const getPlanetsByNames = async (planetNames) => {
@@ -196,28 +151,7 @@ const VehicleState = props => {
                 mostPoplationVehicle = { id: value.id, totalHomePopulation: value.totalHomePopulation }
         }
         let finaleVehicle = await getVehiclesById(mostPoplationVehicle.id)
-        // let finaleVehicle = {
-        //     "name": "Tsmeu-6 personal wheel bike",
-        //     "model": "Tsmeu-6 personal wheel bike",
-        //     "manufacturer": "Z-Gomot Ternbuell Guppat Corporation",
-        //     "cost_in_credits": "15000",
-        //     "length": "3.5",
-        //     "max_atmosphering_speed": "330",
-        //     "crew": "1",
-        //     "passengers": "1",
-        //     "cargo_capacity": "10",
-        //     "consumables": "none",
-        //     "vehicle_class": "wheeled walker",
-        //     "pilots": [
-        //         "https://swapi.py4e.com/api/people/79/"
-        //     ],
-        //     "films": [
-        //         "https://swapi.py4e.com/api/films/6/"
-        //     ],
-        //     "created": "2014-12-20T19:43:54.870000Z",
-        //     "edited": "2014-12-20T21:30:21.745000Z",
-        //     "url": "https://swapi.py4e.com/api/vehicles/60/"
-        // }
+
         const vehicleId = getObjectFromURL(finaleVehicle.url).id;
         finaleVehicle.pilots = vehicleMap.get(vehicleId).pilots
         finaleVehicle.planets = vehicleMap.get(vehicleId).planets
@@ -225,14 +159,13 @@ const VehicleState = props => {
         setHighestPopulationVehicle(finaleVehicle)
 
         return finaleVehicle
-
     }
 
     const getAndInitData = async () => {
+        fetchStart()
         let planetsMap = new Map()
         let pilotMap = new Map()
         let peopleList = await getAllByCategoryAPI('people')
-        // let peopleList = mockPeopleResults
 
         for (let i = 0; i < peopleList.length; i++) {
 
@@ -249,14 +182,11 @@ const VehicleState = props => {
             }
         }
         let tempPlanetMap = await getPlanetsByMap(planetsMap)
-        // let tempPlanetMap = mockPlanetsResults
 
         tempPlanetMap.forEach(planet => {
             const planetCopy = { ...planet, id: getObjectFromURL(planet.url).id };
             planetsMap.set(planetCopy.id, planetCopy)
         })
-
-        // await getVehiclesByMap(vehicleMap)
 
         setPilotsByMap(pilotMap)
         setPlanetsByMap(planetsMap)
@@ -270,6 +200,7 @@ const VehicleState = props => {
             highestPopulationVehicle: state.highestPopulationVehicle,
             planetsNames: state.planetsNames,
             planetsList: state.planetsList,
+            filtteredPlanetsList: state.filtteredPlanetsList,
             calculatePopulationToVehicle,
             getAllByCategoryAPI,
             fetchStart,
@@ -283,4 +214,4 @@ const VehicleState = props => {
         </vehicleContext.Provider>
     )
 };
-export default VehicleState;
+export default ApppState;

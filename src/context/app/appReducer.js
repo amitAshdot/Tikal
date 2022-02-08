@@ -1,12 +1,10 @@
 import {
     SET_PILOTS,
     SET_PLANETS,
-    SET_SUM_MAP,
     SET_HIGHEST_POPULATION_VEHICLE,
     SET_PLANETS_LIST,
     FETCH_START,
     FETCH_FAILED,
-    FETCH_SUCCESS,
     FETCH_PEOPLE_SUCCESS,
     FETCH_PILOTS_SUCCESS,
     FETCH_VEHICLES_SUCCESS,
@@ -28,11 +26,7 @@ export default (state, action) => {
                 error: action.payload,
                 isLoading: false
             }
-        case FETCH_SUCCESS:
-            return {
-                ...state,
-                isLoading: false
-            }
+
         case FETCH_PEOPLE_SUCCESS:
             return {
                 ...state,
@@ -80,7 +74,7 @@ export default (state, action) => {
         case SET_PLANETS_LIST:
             return {
                 ...state,
-                planetList: action.payload,
+                filtteredPlanetsList: action.payload,
             }
         default:
             return state;

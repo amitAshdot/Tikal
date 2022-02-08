@@ -1,18 +1,14 @@
 import React, { lazy, Suspense } from 'react';
-import './App.css';
-// import TaskOne from './components/TaskOne';
-// import TaskTwo from './components/TaskTwo';
 //Layout component
 import Loading from './components/Loading';
-
 //context components
-import VehicleState from './context/vehicle/vehicleState';
+import ApppState from './context/app/appState';
 
 const TaskOne = lazy(() => import('./components/TaskOne'))
 const TaskTwo = lazy(() => import('./components/TaskTwo'))
 const App = () => {
   return (
-    <VehicleState >
+    <ApppState >
       <Suspense fallback={<Loading />}>
         <div className="App">
           <TaskOne />
@@ -20,7 +16,7 @@ const App = () => {
           {/* <Loading /> */}
         </div>
       </Suspense>
-    </VehicleState>
+    </ApppState>
   );
 }
 
