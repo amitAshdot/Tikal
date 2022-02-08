@@ -407,6 +407,7 @@ body:not(.tabbed) *:focus {
           padding-inline-start: 5rem;
   -webkit-padding-end: 5rem;
           padding-inline-end: 5rem;
+  min-height: 40vh;
 }
 
 @media only screen and (max-width: 47.5em) {
@@ -450,6 +451,7 @@ body:not(.tabbed) *:focus {
           padding-inline-start: 5rem;
   -webkit-padding-end: 5rem;
           padding-inline-end: 5rem;
+  min-height: 40vh;
 }
 
 @media only screen and (max-width: 47.5em) {
