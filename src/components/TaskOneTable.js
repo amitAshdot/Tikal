@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef } from 'react'
+import React, { useContext } from 'react'
 import VehicleContext from '../context/app/appContext'
 
 const TaskOneTable = () => {
@@ -13,12 +13,11 @@ const TaskOneTable = () => {
             </tr>
         </thead>
         <tbody>
-            <tr ><th>Related home planets and their respective</th></tr>
+            <tr><th>Related home planets and their respective</th></tr>
             <tr>
-                {/* <th></th> */}
                 <td>{planetsListToShow}</td>
             </tr>
-            <tr><th>Total population</th> <td>{highestPopulationVehicle.totalHomePopulation}</td></tr>
+            <tr><th>Total population</th><td>{highestPopulationVehicle.totalHomePopulation}</td></tr>
         </tbody>
         <tfoot>
             <tr>

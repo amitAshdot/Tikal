@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import VehicleContext from '../context/app/appContext'
 import TaskTwoGraph from './TaskTwoGraph';
 import Loading from './Loading';
-import Lightsaber from '../images/Lightsaber.png';
+
 const TaskTwo = () => {
     const vehicleContext = useContext(VehicleContext);
     const { planetsNames, getPlanetsByNames, planetsList, filtteredPlanetsList } = vehicleContext;
@@ -25,8 +25,6 @@ const TaskTwo = () => {
         <p> {chartText}</p>
         {planetsList.length ? <TaskTwoGraph isLog={isLog} /> : null}
         {planetsList.length ? <Loading extraClass={'finish'} /> : <Loading extraClass={''} />}
-
-        {/* {planetsList.length ? <TaskTwoGraph isLog={false} /> : <Loading />} */}
     </div>;
 };
 

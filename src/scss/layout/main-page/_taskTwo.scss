@@ -12,6 +12,15 @@
         padding-inline-end: 2rem;
     }
 
+    .taskTwo>p {
+        font-size: 1.4rem;
+
+        @include respond(tab-port) {
+            font-size: 1.8rem;
+
+        }
+    }
+
     .graph {
         &-container {
             display: flex;
@@ -75,6 +84,7 @@
 
         @include respond(tab-port) {
             width: 100%;
+            font-size: 2rem;
         }
 
         &:hover {
